@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017" # Локальный доступ к MongoDB
+    volumes:
+      - mongo_data:/data/db # Volume для хранения данных MongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root # Пользователь для админ-доступа
+      MONGO_INITDB_ROOT_PASSWORD: example # Пароль для админ-доступа
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000" # Локальный доступ к MinIO через Web UI и API
+      - "9001:9001" # Локальный доступ к MinIO Console (админ-панель)
+    volumes:
+      - minio_data:/data # Volume для хранения данных MinIO
+    environment:
+      MINIO_ROOT_USER: minioadmin # Пользователь для админ-доступа
+      MINIO_ROOT_PASSWORD: minioadmin123 # Пароль для админ-доступа
+    command: server /data --console-address ":9001"
+
+volumes:
+  mongo_data:
+    driver: local
+  minio_data:
+    driver: local
