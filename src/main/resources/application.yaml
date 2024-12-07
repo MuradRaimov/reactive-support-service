@@ -2,10 +2,20 @@ server:
   port: 8083
 minio:
   endpoint: http://localhost:9000
-  access-key: your-access-key
-  secret-key: your-secret-key
-  bucket: complaints
+  access-key: 40FWiiUi9AfU5uvI8v3P
+  secret-key: rkxneUDYUo8Olsxdf88inwr96oZjSNh9V39cSLiu
+  bucket: supports-message
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/support-service
+      uri: mongodb://localhost:27017/support
+      username: root
+      password: example
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  mvc:
+    contentnegotiation:
+      favor-parameter: false

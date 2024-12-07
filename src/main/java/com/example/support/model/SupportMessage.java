@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 @Data
 @Document(collection = "SupportMessage")
 public class SupportMessage {
@@ -14,5 +16,5 @@ public class SupportMessage {
     private String status;
     private String description;
     private String photoUrl;
-    private String creationDate;
+    private LocalDate creationDate;
 }
